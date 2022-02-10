@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: TabsScreen(),
       routes: {
-        FilterScreen.routeName: (ctx) => FilterScreen(_setFilters),
+        FilterScreen.routeName: (ctx) => FilterScreen(_filters, _setFilters),
         CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
