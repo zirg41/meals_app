@@ -20,6 +20,8 @@ class _MyAppState extends State<MyApp> {
     "vegeterian": false,
   };
 
+  void _setFilters(Map<String, bool> filterData) {}
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: TabsScreen(),
       routes: {
-        FilterScreen.routeName: (ctx) => FilterScreen(),
+        FilterScreen.routeName: (ctx) => FilterScreen(_setFilters),
         CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen()
