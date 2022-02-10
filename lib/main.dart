@@ -22,7 +22,29 @@ class _MyAppState extends State<MyApp> {
     "vegeterian": false,
   };
 
-  void _setFilters(Map<String, bool> filterData) {}
+  List<Meal> _availableMeals = DUMMY_MEALS;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+
+      _availableMeals = DUMMY_MEALS.where((meal) {
+        if (_filters["gluten"] && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters["lactose"] && !meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters["vegan"] && !meal.isVegan) {
+          return false;
+        }
+        if (_filters["vegeterian"] && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +74,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         FilterScreen.routeName: (ctx) => FilterScreen(_setFilters),
         CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
-        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        CategoryMealsScreen.routeName: (ctx) =>
+            CategoryMealsScreen(_availableMeals),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen()
       },
       onUnknownRoute: (settings) {
