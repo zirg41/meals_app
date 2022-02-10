@@ -5,7 +5,7 @@ class FilterScreen extends StatefulWidget {
   static const routeName = "/filters";
   final Function saveFilters;
 
-  const FilterScreen(this.saveFilters);
+  FilterScreen(this.saveFilters);
 
   @override
   State<FilterScreen> createState() => _FilterScreenState();
@@ -34,7 +34,15 @@ class _FilterScreenState extends State<FilterScreen> {
           title: Text("Your Filters"),
           actions: [
             IconButton(
-              onPressed: widget.saveFilters,
+              onPressed: () {
+                final selectedFilters = {
+                  "gluten": _glutenFree,
+                  "lactose": _lactoseFree,
+                  "vegan": _vegan,
+                  "vegeterian": _vegetarian,
+                };
+                widget.saveFilters(selectedFilters);
+              },
               icon: Icon(Icons.save),
             )
           ],
