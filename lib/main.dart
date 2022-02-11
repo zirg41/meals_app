@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
       ),
-      home: TabsScreen(),
+      home: TabsScreen(_favoriteMeals),
       routes: {
         FilterScreen.routeName: (ctx) => FilterScreen(_filters, _setFilters),
         CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
